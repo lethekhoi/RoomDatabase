@@ -10,11 +10,9 @@ import androidx.room.RoomDatabase;
 public abstract class SinhVienDatabase extends RoomDatabase { //dùng abstract
     private static SinhVienDatabase sinhVienDatabase = null;
 
-    private SinhVienDatabase() {
+    protected abstract SinhvienDao sinhvienDao();
 
-    }
-
-    public static SinhVienDatabase getInstance(Context context) {
+    public static  synchronized SinhVienDatabase getInstance(Context context) {
         if (sinhVienDatabase == null) {
             sinhVienDatabase = Room.databaseBuilder(context, SinhVienDatabase.class, "Quanlysinhvien")
                     .fallbackToDestructiveMigration()
